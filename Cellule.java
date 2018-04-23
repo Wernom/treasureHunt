@@ -1,6 +1,4 @@
 public class Cellule {
-    static int posXTresor;
-    static int posYTresor;
     private int posX;
     private int posY;
     private int distanceTresor;
@@ -11,17 +9,17 @@ public class Cellule {
     Cellule(int posX, int posY){
         this.posX = posX;
         this.posY = posY;
-        if(posXTresor > posX){
-            if(posYTresor > posY){
-                this.distanceTresor = (posXTresor-posX)+(posYTresor-posY);
+        if(Plateau.posXTresor > posX){
+            if(Plateau.posYTresor > posY){
+                this.distanceTresor = (Plateau.posXTresor-posX)+(Plateau.posYTresor-posY);
             }else{
-                this.distanceTresor = (posXTresor-posX)+(posY-posYTresor);
+                this.distanceTresor = (Plateau.posXTresor-posX)+(posY-Plateau.posYTresor);
             }
         }else{
-            if(posYTresor > posY){
-                this.distanceTresor = (posX-posXTresor)+(posYTresor-posY);
+            if(Plateau.posYTresor > posY){
+                this.distanceTresor = (posX-Plateau.posXTresor)+(Plateau.posYTresor-posY);
             }else{
-                this.distanceTresor = (posX-posXTresor)+(posY-posYTresor);
+                this.distanceTresor = (posX-Plateau.posXTresor)+(posY-Plateau.posYTresor);
             }
         }
     }
