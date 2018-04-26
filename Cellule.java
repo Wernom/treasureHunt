@@ -1,31 +1,30 @@
 public class Cellule {
-    private int posX;
-    private int posY;
-    private int distanceTresor;
+    protected int posX;
+    protected int posY;
+    protected int distanceTresor;
+    protected char id;
 
     Cellule(){
     }
-
-    Cellule(int posX, int posY){
+    Cellule(int posX, int posY, int distanceTresor){
         this.posX = posX;
         this.posY = posY;
-        if(Plateau.posXTresor > posX){
-            if(Plateau.posYTresor > posY){
-                this.distanceTresor = (Plateau.posXTresor-posX)+(Plateau.posYTresor-posY);
-            }else{
-                this.distanceTresor = (Plateau.posXTresor-posX)+(posY-Plateau.posYTresor);
-            }
-        }else{
-            if(Plateau.posYTresor > posY){
-                this.distanceTresor = (posX-Plateau.posXTresor)+(Plateau.posYTresor-posY);
-            }else{
-                this.distanceTresor = (posX-Plateau.posXTresor)+(posY-Plateau.posYTresor);
-            }
-        }
+        this.id = '_';
+        this.distanceTresor = distanceTresor;
+    }
+    Cellule(int posX, int posY, Tresor tresor){
+        this.posX = posX;
+        this.posY = posY;
+        this.id = '_';
+        this.distanceTresor = Math.abs(tresor.posX-posX)+Math.abs(tresor.posY-posY);
     }
 
     public int getDistance(){
         return distanceTresor;
+    }
+
+    public char getId() {
+        return id;
     }
 
     public int getX(){

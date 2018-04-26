@@ -1,5 +1,7 @@
 public class Tresor extends Cellule {
-    Tresor(int posX, int posY) {
-        super(posX, posY);
+
+    public Tresor(int x, int y) {
+        super(x, y, 0);
+        this.id = 'T';
     }
 }
