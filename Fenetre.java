@@ -1,35 +1,64 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public class Fenetre extends JFrame {
+/**
+ * Classe permettant l'affichage de la fenetre de jeu.
+ */
+public class Fenetre extends JFrame{
+    /**
+     * Container de la fenetre.
+     */
+    Container espace_jeu = getContentPane();
 
-    Fenetre(){
-        this.setSize(400, 500);
+    /**
+     * Initialise la fenetre de jeu.
+     * Ajoute notamment un nouvelle MouseAdapter qui quand on clic dans la zone de jeu permet de placer ou déplacer une pierre.
+     * @param p Le plateau de jeu
+     */
+    Fenetre(Plateau p){
+        this.setSize(900, 700);
         setTitle("Treasure HUNT");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
-        Container espace_jeu = getContentPane();
+
         espace_jeu.setLayout(new BorderLayout());
+        espace_jeu.setBackground(Color.BLUE);
+        p.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {//TODO: implementer un nombre max de pierre.
+                if(e.getX() > p.getPosX()  && e.getX() < getWidth() - p.getPosX() && e.getY() > p.getPosY() && e.getY() < getHeight() - p.getPosY() && Main.tourJoueur){
+                    int i = (e.getX() - p.getPosX())/p.plateau[0][0].getSize();
+                    int j = (e.getY() - p.getPosY())/p.plateau[0][0].getSize();
+                    if(Pierre.isIsMoved()){
+                        Pierre.setIsMoved(false);
+                        Pierre.placerPierre(e.getX(), e.getY(), p);
+                    }else if(p.plateau[i][j].getId().equals("_"))
+                        Pierre.placerPierre(e.getX(), e.getY(), p);
+                    else if(p.plateau[i][j].getId().equals("P")){
+                        Pierre.setIsMoved(true);
+                        p.plateau[i][j] = new Cellule(i, j, Math.abs(Tresor.getTresorX() -i)+Math.abs(Tresor.getTresorY() -j));
+                    }
+                }
+            }
+        });
 
-        /*JPanel grid = new JPanel();
-        grid.setBackground(Color.BLUE);
-        espace_jeu.add(grid, "Center");*/
+        bouton(espace_jeu);
 
-        /*JPanel sac_pierre = new JPanel();
-        sac_pierre.setBackground(Color.CYAN);
-        espace_jeu.add(sac_pierre, BorderLayout.WEST);
-        sac_pierre.setLocation(100, 100);
-        sac_pierre.setSize(50, 50);
-        sac_pierre.setLayout(null);*/
+    }
 
-       /* JPanel bot = new JPanel();
+    /**
+     * Ajoute des boutons à la fenetre :
+     *                      - Abondonner qui permet de quitter la partie
+     *                      - Passer son tour qui permet de passer son tour
+     * @param espace_jeu Le Container de la fenetre.
+     */
+    void bouton (Container espace_jeu){
+        JPanel bot = new JPanel();
         bot.setBackground(Color.green);
         espace_jeu.add(bot, BorderLayout.SOUTH);
-*/
         JButton quitter = new JButton("Abandonner");
         quitter.addActionListener(new ActionListener() {
             @Override
@@ -37,20 +66,18 @@ public class Fenetre extends JFrame {
                 System.exit(0);
             }
         });
-//        bot.add(quitter);
+        bot.add(quitter);
+    }
 
-        /*JButton sac = new JButton("S");
-        sac.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        sac_pierre.add(sac);
-        sac.setPreferredSize(new Dimension(25,25));
-        sac.setLocation(sac_pierre.getWidth()/2, sac_pierre.getHeight()/2);*/
-
-
-
+    /**
+     * Dessine le plateau.
+     * @param p Le plateau de jeu.
+     */
+    void draw(Plateau p){
+        espace_jeu.add(p, BorderLayout.CENTER);
+        long t1 = System.currentTimeMillis();
+        while(System.currentTimeMillis()<t1+1000)
+        espace_jeu.repaint();
     }
 }
 
