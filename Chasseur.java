@@ -115,7 +115,6 @@ public class Chasseur extends Cellule implements Comparator<Chasseur>{
             if(deplacementValide(newPosX, newPosY, p)) {
                 dirAleatoire = i;
                 if(this.distanceTresor > p.plateau[newPosX][newPosY].getDistance()) {
-                    System.out.println("x = " + newPosX + " y = " + newPosY);
                     chemin(p, newPosX, newPosY, ++conteur);
                     return;
                 }
@@ -123,7 +122,6 @@ public class Chasseur extends Cellule implements Comparator<Chasseur>{
         }
 
         if(dirAleatoire != -1){
-            System.out.println("x = " + ((int) direction.get(dirAleatoire).getX() + nextX) + " y = " + ((int) direction.get(dirAleatoire).getX() + nextX));
             chemin(p, (int) direction.get(dirAleatoire).getX() + nextX, (int) direction.get(dirAleatoire).getY() + nextY, ++conteur);
             return;
         }

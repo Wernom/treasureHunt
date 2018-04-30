@@ -9,6 +9,16 @@ import java.io.IOException;
  */
 public class Pierre extends Cellule{
     /**
+     * Nombre de pierre maximum pouvant être posé.
+     */
+    private static int nbPierreMax = 8;
+
+    /**
+     * Nombre de pierre actuellement placé.
+     */
+    private static int nbPierre = 0;
+
+    /**
      * Permet de savoir si on est en train de déplacer une pierre. true si on déplace une pierre false sinon
      */
     private static boolean isMoved = false;
@@ -58,11 +68,34 @@ public class Pierre extends Cellule{
      * @param p Plateau de jeu
      */
     static void placerPierre(int mouseX, int mouseY, Plateau p){
-        int i = (mouseX - p.getPosX())/p.plateau[0][0].getSize();
-        int j = (mouseY - p.getPosY())/p.plateau[0][0].getSize();
-        System.out.println("i: " + i + "j: " + j);
+        int i = (mouseX - p.getPosX())/Cellule.getSize();
+        int j = (mouseY - p.getPosY())/Cellule.getSize();
         p.plateau[i][j] = new Pierre(i, j);
 
         Main.tourJoueur = false;
+    }
+
+    /**
+     *
+     * @return Le nombre de pierre pouvant etre posé au maximum.
+     */
+    public static int getNbPierreMax() {
+        return nbPierreMax;
+    }
+
+    /**
+     *
+     * @return Nombre de pierre actuellement placé.
+     */
+    public static int getNbPierre() {
+        return nbPierre;
+    }
+
+    /**
+     * Ajoute 1 au nombre de pierre en jeu
+     */
+    public static void setNbPierre(int nbPierre) {
+
+        Pierre.nbPierre = nbPierre;
     }
 }

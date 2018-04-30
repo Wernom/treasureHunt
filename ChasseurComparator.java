@@ -2,6 +2,7 @@ import java.util.Comparator;
 
 /**
  * Class permettant de comparer 2 chasseur.
+ * @author Mathilde Siegwart et Sagona Loïc
  */
 public class ChasseurComparator implements Comparator<Chasseur> {
     @Override

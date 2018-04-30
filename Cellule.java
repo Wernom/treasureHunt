@@ -25,7 +25,7 @@ public class Cellule{
     /**
      * Taille d'une cellule.
      */
-    private int size;
+    static private int size;
     /**
      * Distance d'une celluel au trésor.
      */
@@ -137,7 +137,7 @@ public class Cellule{
      *
      * @return La taille d'une cellule.
      */
-    public int getSize() {
+    static public int getSize() {
         return size;
     }
 }

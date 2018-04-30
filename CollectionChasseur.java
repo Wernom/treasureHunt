@@ -3,6 +3,7 @@ import java.util.PriorityQueue;
 
 /**
  * Classe permettant de stocker les chasseur dans l'ordre ou ils ils doivent jouer
+ * @author Mathilde Siegwart et Sagona Loïc
  */
 public class CollectionChasseur extends PriorityQueue<Chasseur> {
     /**
