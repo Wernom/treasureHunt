@@ -52,7 +52,7 @@ public class Plateau extends JPanel{
             }
         }
 
-        for(int i = 0; i < Main.nb_chasseur; ++i){
+        for(int i = 0; i < Fenetre.nbChasseur; ++i){
             do{
                 posXChasseur = (int)(Math.random()*largeur);
                 posYChasseur = (int)(Math.random()*hauteur);
@@ -76,16 +76,16 @@ public class Plateau extends JPanel{
         for (int i = 0; i < this.plateau.length; ++i){
             for(int j = 0; j < this.plateau[0].length; ++j){
                 g.setColor(Color.BLACK);
-                g.drawString(Main.tourJoueur ? "A VOTRE TOUR": "AU TOUR DES CHASSEURS DE TRESOR", 10, 20);
+                g.drawString(Fenetre.tourJoueur ? "A VOTRE TOUR": "AU TOUR DES CHASSEURS DE TRESOR", 10, 20);
                 if(this.plateau[j][i].sprite == null){
-                    if((Main.gagner || Main.perdu) && this.plateau[j][i].id.equals("T"))
+                    if((Fenetre.gagner || Fenetre.perdu) && this.plateau[j][i].id.equals("T"))
                         g.setColor(Tresor.getCouleurTresorDevoile());
                     else
                         g.setColor(this.plateau[j][i].couleur);
 
                     g.fillRect(posX+j*Cellule.getSize(), posY+i*Cellule.getSize(), Cellule.getSize(), Cellule.getSize());
                 }else{
-                    if((Main.gagner || Main.perdu) && this.plateau[j][i].id.equals("T"))
+                    if((Fenetre.gagner || Fenetre.perdu) && this.plateau[j][i].id.equals("T"))
                         g.drawImage(Tresor.getSpriteTresorDevoile(), posX+j*Cellule.getSize(), posY+i*Cellule.getSize(), Cellule.getSize(), Cellule.getSize(), this);
                     else
                         g.drawImage(this.plateau[j][i].sprite, posX+j*Cellule.getSize(), posY+i*Cellule.getSize(), Cellule.getSize(), Cellule.getSize(), this);
@@ -93,10 +93,10 @@ public class Plateau extends JPanel{
             }
         }
 
-        if(Main.gagner){
+        if(Fenetre.gagner){
             g.setColor(Color.green);
             drawGagne(g);
-        }else if(Main.perdu){
+        }else if(Fenetre.perdu){
             g.setColor(Color.red);
             drawPerdu(g);
         }

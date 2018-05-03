@@ -72,7 +72,7 @@ public class Pierre extends Cellule{
         int j = (mouseY - p.getPosY())/Cellule.getSize();
         p.plateau[i][j] = new Pierre(i, j);
 
-        Main.tourJoueur = false;
+        Fenetre.tourJoueur = false;
     }
 
     /**

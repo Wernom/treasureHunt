@@ -5,30 +5,24 @@
  */
 public class Main {
 
-    static int nb_chasseur = 3;
-    static boolean tourJoueur = false;
-    static boolean perdu = false;
-    static boolean gagner = false;
-    static private boolean fin = false;
 
-    public static void setFin() {
+
+    /*public static void setFin() {
         fin = true;
-    }
+    }*/
 
     public static void main(String[] args) {
-        Tresor tresor = new Tresor();
 
-        CollectionChasseur listeChasseur = new CollectionChasseur(nb_chasseur, new ChasseurComparator());
-        Plateau plateau = new Plateau(tresor, listeChasseur);
-        Fenetre f = new Fenetre(plateau);
-        f.drawJeu(plateau);
-        Chasseur chasseurActif;
+        Fenetre f = new Fenetre();
+
+        //f.drawJeu(plateau);
+        //Chasseur chasseurActif;
         int i = 0;
-        while(true) {
+/*        while(true) {
             while (!fin) {
                 if (!tourJoueur) {
                     i++;
-                    CollectionChasseur newListeChasseur = new CollectionChasseur(nb_chasseur, new ChasseurComparator());
+                    CollectionChasseur newListeChasseur = new CollectionChasseur(nbChasseur, new ChasseurComparator());
                     while ((chasseurActif = listeChasseur.poll()) != null) {
                         newListeChasseur.add(chasseurActif.deplacer(plateau, tresor));
                         f.drawJeu(plateau);
@@ -54,11 +48,11 @@ public class Main {
             perdu = false;
             tourJoueur = false;
             tresor = new Tresor();
-            listeChasseur = new CollectionChasseur(nb_chasseur, new ChasseurComparator());
+            listeChasseur = new CollectionChasseur(nbChasseur, new ChasseurComparator());
             plateau = new Plateau(tresor, listeChasseur);
             f = new Fenetre(plateau);
             f.drawJeu(plateau);
-        }
+        }*/
 
     }
 }

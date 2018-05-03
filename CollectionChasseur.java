@@ -20,7 +20,7 @@ public class CollectionChasseur extends PriorityQueue<Chasseur> {
      * @return true la partie est gangé, false la partie continue.
      */
     boolean gagner(){
-        if(Chasseur.coincer == Main.nb_chasseur)return true;
+        if(Chasseur.coincer == Fenetre.nbChasseur)return true;
         return false;
     }
 }

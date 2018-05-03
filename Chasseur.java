@@ -64,7 +64,7 @@ public class Chasseur extends Cellule implements Comparator<Chasseur>{
             if (deplacementValide(newPosX, newPosY, p)) {
                 dirAleatoire = i;
                 if (this.distanceTresor > p.plateau[newPosX][newPosY].getDistance()) {
-                    Main.perdu = perdu(p, newPosX, newPosY);
+                    Fenetre.perdu = perdu(p, newPosX, newPosY);
                     p.plateau[this.posX][this.posY] = new Cellule(this.posX, this.posY, tresor);
                     Chasseur c = new Chasseur(newPosX, newPosY, tresor);
                     p.plateau[newPosX][newPosY] = c;
@@ -75,7 +75,7 @@ public class Chasseur extends Cellule implements Comparator<Chasseur>{
         if(dirAleatoire != -1){
             int newPosX = (int) direction.get(dirAleatoire).getX() + this.posX;
             int newPosY = (int) direction.get(dirAleatoire).getY() + this.posY;
-            Main.perdu =  perdu(p, newPosX, newPosY);
+            Fenetre.perdu =  perdu(p, newPosX, newPosY);
             p.plateau[this.posX][this.posY] = new Cellule(this.posX, this.posY, tresor);
             Chasseur c = new Chasseur(newPosX, newPosY, tresor);
             p.plateau[newPosX][newPosY] = c;
