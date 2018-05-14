@@ -18,11 +18,13 @@ public class Plateau extends JPanel{
     /**
      * Hauteur du plateau.
      */
-    static final int hauteur = 10;
+    private int hauteur = 10;
     /**
      * Largeur du plateau.
      */
-    static final int largeur = 10;
+    private int largeur = 10;
+
+    private Tresor tresor;
 
     /**
      * Tableau conteant les cellules du plateau.
@@ -44,6 +46,8 @@ public class Plateau extends JPanel{
         int posYChasseur;
         int distance;
 
+        tresor = new Tresor(hauteur, largeur);
+
         for(int i = 0; i < largeur; ++i){
             for(int j = 0; j < hauteur; ++j){
                 if(plateau[i][j] == null){
@@ -62,6 +66,24 @@ public class Plateau extends JPanel{
             plateau[posXChasseur][posYChasseur] = c1;
             listeChasseur.add(c1);
         }
+    }
+
+
+    public void setHauteur(int hauteur) {
+        this.hauteur = hauteur;
+    }
+
+    public void setLargeur(int largeur) {
+        this.largeur = largeur;
+    }
+
+    public int getHauteur() {
+
+        return hauteur;
+    }
+
+    public int getLargeur() {
+        return largeur;
     }
 
     /**

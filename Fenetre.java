@@ -10,6 +10,10 @@ public class Fenetre extends JFrame{
      * Container de la fenetre de jeu.
      */
     private Container espaceJeu = getContentPane();
+    private JPanel jeu;
+    private JPanel menu;
+    private JPanel option;
+
     private boolean premierePartie = true;
 
     static int nbChasseur = 3;
@@ -20,6 +24,21 @@ public class Fenetre extends JFrame{
     Tresor tresor;
     CollectionChasseur listeChasseur;
     Plateau plateau;
+    JPanel bot = new JPanel();
+    /**
+     * Hauteur du plateau entré par l'utilisateur.
+     */
+    protected int hauteur;
+    /**
+     * Largeur du plateau entré par l'utilisateur.
+     */
+    int largeur;
+    /**
+     * Nombre de chasseur entré par l'utilisateur.
+     */
+    int NbChasseur;
+
+
 
     /**
      * Initialise la fenetre de jeu.
@@ -34,12 +53,9 @@ public class Fenetre extends JFrame{
         espaceJeu.setLayout(new BorderLayout());
         espaceJeu.setBackground(Color.BLUE);
 
-
-        JPanel bot = new JPanel();
-        bot.setBackground(Color.green);
-        espaceJeu.add(bot, BorderLayout.SOUTH);
-        boutonMenu(bot);
-        initialise();
+        //boutonMenu();
+        createMenuScreen();
+        //initialise();
         //Initialisation variable de jeu
         setVisible(true);
 
@@ -52,21 +68,31 @@ public class Fenetre extends JFrame{
      *                      - Abondonner qui permet de quitter la partie
      *                      - Passer son tour qui permet de passer son tour
      */
-    void boutonMenu(JPanel bot){
+    void boutonMenu(){
         JButton jouer = new JButton("Jouer");
         jouer.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
+                boutonJeu();//TODO: ca marche pas
                 jeu();
-                boutonJeu(bot);//TODO: ca marche pas
+                bot.setBackground(Color.green);
+                espaceJeu.add(bot, BorderLayout.SOUTH);
             }
         });
-        bot.add(jouer);
+        menu.add(jouer);
 
-        boutonQuitter(bot);
+        JButton option = new JButton("Options");
+        option.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        boutonQuitter(menu);
     }
 
-    private void boutonQuitter(JPanel bot){
+    private void boutonQuitter(JPanel pan){
         JButton quitter = new JButton("Quitter");
         quitter.addActionListener(new ActionListener() {
             @Override
@@ -74,10 +100,10 @@ public class Fenetre extends JFrame{
                 System.exit(0);
             }
         });
-        bot.add(quitter);
+        pan.add(quitter);
     }
 
-    private void boutonJeu(JPanel bot){
+    private void boutonJeu(){
         JButton recommencer = new JButton("Recommencer");
         recommencer.addActionListener(new ActionListener() {
             @Override
@@ -85,6 +111,7 @@ public class Fenetre extends JFrame{
                 initialise();
             }
         });
+        bot.add(recommencer);
 
         JButton passer = new JButton("Passer son tour");
         passer.addActionListener(new ActionListener() {
@@ -96,6 +123,7 @@ public class Fenetre extends JFrame{
             }
         });
         bot.add(passer);
+        bot.revalidate();
     }
 
 
@@ -175,5 +203,39 @@ public class Fenetre extends JFrame{
             }
         });
     }
+
+    private void createMenuScreen(){
+        menu = new JPanel();
+        option = new JPanel();
+        boutonMenu();
+        JLabel longueurLabel = new JLabel("Longueur : ");
+        Form longueur = new Form();
+
+
+
+        JLabel largeurLabel = new JLabel("Largeur : ");
+        JTextField largeur = new JTextField(5);
+        JLabel chasseurLabel = new JLabel("Nombre de chasseurs : ");
+        JTextField nbChasseur = new JTextField("4");
+        JLabel pierreLabel = new JLabel("Nombre de Pierre : ");
+        JTextField nbPierre = new JTextField();
+        option.add(largeurLabel);
+        option.add(largeur);
+        option.add(longueurLabel);
+        option.add(longueur);
+        option.add(chasseurLabel);
+        option.add(nbChasseur);
+        option.add(pierreLabel);
+        option.add(nbPierre);
+
+        JButton b = new JButton()
+
+
+        espaceJeu.add(menu, BorderLayout.CENTER);
+        espaceJeu.add(option, BorderLayout.EAST);
+    }
+
+
+
 }
 

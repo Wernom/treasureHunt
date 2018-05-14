@@ -34,13 +34,13 @@ public class Tresor extends Cellule{
      * Constructeur de Trésor
      *
      */
-    public Tresor() {
-        super((int) (Math.random() * Plateau.largeur), (int) (Math.random() * Plateau.hauteur), 0);
+    public Tresor(int hauteur, int largeur) {
+        super((int) (Math.random() * hauteur), (int) (Math.random() * largeur), 0);
         this.id = "T";
         try {
             this.sprite = ImageIO.read(new File("./sprite/cellule.jpg"));
         } catch (IOException ex) {
-            System.err.println("l'image n'à pas pu être charger");
+            System.err.println("l'image n'a pas pu être charger");
             this.sprite = null;
             this.couleur = Color.white;
         }
